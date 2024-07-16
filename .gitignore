@@ -1,3 +1,4 @@
 .env
 env/
 requirements.txt
+node_modules/

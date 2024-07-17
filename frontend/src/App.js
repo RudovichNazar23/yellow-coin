@@ -1,12 +1,13 @@
 import React from "react";
+import "./index.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import HomePage from "./components/Pages/HomePage";
-import LoginForm from "./components/Pages/LoginForm";
-import  RegistrationForm from "./components/Pages/RegistrationForm";
+
+import FormContainer from "./components/Pages/FormContainer";
 
 function App() {
   return (
@@ -18,8 +19,8 @@ function App() {
                   <HomePage />
                 </ProtectedRoute>
               }/>
-              <Route path="/login" element={<LoginForm />}/>
-              <Route path="/registration" element={<RegistrationForm />}/>
+              <Route path="/login" element={<FormContainer />}/>
+              <Route path="/registration" element={<FormContainer />}/>
           </Routes>
       </BrowserRouter>
     </>

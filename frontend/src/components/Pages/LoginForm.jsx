@@ -2,7 +2,7 @@ import FormHeader from "../FormComponents/FormHeader";
 import FormGroup from "../FormComponents/FormGroup";
 import FormButton from "../FormComponents/FormButton";
 
-export default function LoginForm(){
+export default function LoginForm({ clickHandler }){
     return (
         <>
             <FormHeader headerValue={"Login"} />
@@ -13,7 +13,7 @@ export default function LoginForm(){
                 <FormButton buttonValue={"Login"} />
                 <div className="mb-3 mt-3 ">
                     <div>Don't have an account?</div>
-                    <a href="">Go to registration</a>
+                    <a href="" onClick={clickHandler}>Go to registration</a>
                 </div>
             </form>
         </>

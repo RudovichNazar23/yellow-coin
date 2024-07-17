@@ -19,8 +19,8 @@ function App() {
                   <HomePage />
                 </ProtectedRoute>
               }/>
-              <Route path="/login" element={<FormContainer />}/>
-              <Route path="/registration" element={<FormContainer />}/>
+              <Route path="/login" element={<FormContainer initial={true} />}/>
+              <Route path="/registration" element={<FormContainer initial={false} />}/>
           </Routes>
       </BrowserRouter>
     </>

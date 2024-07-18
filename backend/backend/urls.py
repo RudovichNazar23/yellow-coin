@@ -8,4 +8,5 @@ urlpatterns = [
     path("auth/token/", TokenObtainPairView.as_view(), name="token"),
     path("auth/token/refresh/", TokenRefreshView.as_view(), name="refresh_token"),
     path("", include("rest_framework.urls")),
+    path("user_profile/", include("user_profile.urls")),
 ]

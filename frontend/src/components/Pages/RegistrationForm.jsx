@@ -1,19 +1,37 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import { ACTIONS } from "../../utils/actions";
 
 import api from "../../utils/api";
 
 import FormHeader from "../FormComponents/FormHeader";
 import FormGroup from "../FormComponents/FormGroup";
 import FormButton from "../FormComponents/FormButton";
+import Loading from "../Loading";
 
-export default function RegistrationForm({ clickHandler }){
-    const [formErrors, setFormErrors] = useState({
+import registrationReducer from "../../reducers/registrationReducer";
+
+const INITIAL_STATE = {
+    action: ACTIONS.initial,
+    data: undefined,
+    errors: {
         "username": [],
         "password": [],
         "repeatPassword": []
-    });
+    }
+};
+
+export default function RegistrationForm({ clickHandler }){
+    const [state, dispatch] = useReducer(registrationReducer, INITIAL_STATE);
     const navigate = useNavigate();
+
+    if(state.action === ACTIONS.loading){
+        return <Loading />;
+    };
+    
+    if(state.action === ACTIONS.complete){
+        return navigate("/");
+    };
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -25,28 +43,32 @@ export default function RegistrationForm({ clickHandler }){
 
         if(!username || !password || !repeatPassword) return;
         if(password !== repeatPassword){
-            setFormErrors((prev) => { return {...prev, ["repeatPassword"]: ["Passwords don't match",]}});
+            dispatch({ type: ACTIONS.error, payload: {...INITIAL_STATE, ["repeatPassword"]: ["Passwords don't match"]}});
             return;
-        } 
-
+        }; 
+        dispatch({ type: ACTIONS.loading, payload: undefined });
         const response = api.post("/user_profile/user/", { "username": username, "password": password });
         response
-        .then((res) => res.status === 201 && navigate("/"))
+        .then((res) => res.status === 201 && dispatch({ type: ACTIONS.complete, payload: undefined }))
         .catch((error) => {
+            const errors = {};
             for(const key in error.response.data){
-                setFormErrors((prev) => { return {...prev, [key]: error.response.data[key]}});
-            }
+                errors[key] = error.response.data[key];
+            };
+            dispatch({ type: ACTIONS.error, payload: errors });
         });
     };
+
+    const { username, password, repeatPassword } = state.errors;
 
     return (
         <>
             <FormHeader headerValue={"Registration"}/>
             <hr className="container" style={{width: "350px"}}/>
             <form onSubmit={onSubmitHandler}>
-                <FormGroup labelValue={"Username"} inputType={"text"} inputId={"username"} errors={formErrors.username}/>
-                <FormGroup labelValue={"Password"} inputType={"password"} inputId={"password"} errors={formErrors.password}/>
-                <FormGroup  labelValue={"Repeat password"} inputType={"password"} inputId={"repeatPassword"} errors={formErrors.repeatPassword}/>
+                <FormGroup labelValue={"Username"} inputType={"text"} inputId={"username"} errors={username}/>
+                <FormGroup labelValue={"Password"} inputType={"password"} inputId={"password"} errors={password}/>
+                <FormGroup  labelValue={"Repeat password"} inputType={"password"} inputId={"repeatPassword"} errors={repeatPassword}/>
                 <FormButton buttonValue={"Registration"} />
                 <div className="mb-3 mt-3 ">
                     <div>Already have an account?</div>

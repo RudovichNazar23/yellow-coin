@@ -3,6 +3,7 @@ import { useReducer } from "react";
 import api from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS, REFRESH } from "../../utils/constants";
+import { ACTIONS } from "../../utils/actions";
 
 import FormHeader from "../FormComponents/FormHeader";
 import FormGroup from "../FormComponents/FormGroup";
@@ -10,12 +11,7 @@ import FormButton from "../FormComponents/FormButton";
 import LoginErrorContainer from "../FormComponents/LoginErrorContainer";
 import Loading from "../Loading";
 
-const ACTIONS = {
-    initial: "initial",
-    loading: "loading",
-    error: "error",
-    complete: "complete"
-};
+import loginReducer from "../../reducers/loginReducer";
 
 const INITIAL_STATE = {
     action: ACTIONS.initial,
@@ -23,21 +19,8 @@ const INITIAL_STATE = {
     error: undefined
 };
 
-function reducer(state, { type, payload }){
-    switch (type) {
-        case ACTIONS.loading: 
-            return { action: ACTIONS.loading, data: payload, error: undefined }
-        case ACTIONS.complete:
-            return { action: ACTIONS.complete, data: payload, error: undefined }
-        case ACTIONS.error:
-            return { action: ACTIONS.error, data: undefined, error: payload }
-        default:
-            return state;
-    }
-};
-
 export default function LoginForm({ clickHandler }){
-    const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+    const [state, dispatch] = useReducer(loginReducer, INITIAL_STATE);
     const navigate = useNavigate();
 
     if(state.action === ACTIONS.loading){

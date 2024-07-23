@@ -56,8 +56,8 @@ export default function LoginForm({ clickHandler }){
     return (
         <>
             <FormHeader headerValue={"Login"} />
-            <hr className="container" style={{width: "350px"}}/>
-            <form className="" onSubmit={onSubmitHandler}>
+            <hr className="container col-lg-5 col-md-12"/>
+            <form className="w-80" onSubmit={onSubmitHandler}>
                 <FormGroup labelValue={"Username"} inputType={"text"} inputId={"username"}/>
                 <FormGroup labelValue={"Password"} inputType={"password"} inputId={"password"}/>
                 <LoginErrorContainer errorMessage={state.error}/>

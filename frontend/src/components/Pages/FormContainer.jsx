@@ -17,15 +17,17 @@ export default function FormContainer({ initial }){
     };
 
     return (
-        <div className="d-flex flex-row align-items-center justify-content-between" 
-            style={{height: 925}}
-        >
-            <IconDiv/>
-            <div className="vr"/>
-            <div className="d-flex flex-column align-items-center" style={{width: "50%"}}>
-                {
-                    isOpened ? <LoginForm clickHandler={onClickHandler}/> : <RegistrationForm clickHandler={onClickHandler} />
-                }
+        <div class="container-fluid d-flex flex-column align-items-center justify-content-center">
+            <div className="row w-100 h-100 d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <IconDiv/>
+                <div class="col-12 col-md-1 d-none d-md-block d-flex flex-column align-items-center justify-content-center" style={{height: "900px"}}>
+                    <div class="vr" style={{height: "100%"}}></div>
+                </div>
+                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center mt-4">
+                    {
+                        isOpened ? <LoginForm clickHandler={onClickHandler}/> : <RegistrationForm clickHandler={onClickHandler} />
+                    }
+                </div>
             </div>
         </div>
     );

@@ -64,8 +64,8 @@ export default function RegistrationForm({ clickHandler }){
     return (
         <>
             <FormHeader headerValue={"Registration"}/>
-            <hr className="container" style={{width: "350px"}}/>
-            <form onSubmit={onSubmitHandler}>
+            <hr className="container col-lg-5 col-md-12"/>
+            <form onSubmit={onSubmitHandler} className="w-80">
                 <FormGroup labelValue={"Username"} inputType={"text"} inputId={"username"} errors={username}/>
                 <FormGroup labelValue={"Password"} inputType={"password"} inputId={"password"} errors={password}/>
                 <FormGroup  labelValue={"Repeat password"} inputType={"password"} inputId={"repeatPassword"} errors={repeatPassword}/>

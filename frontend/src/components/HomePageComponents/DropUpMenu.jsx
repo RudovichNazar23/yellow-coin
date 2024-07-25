@@ -1,4 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
+import DropDownItem from "./DropDownItem";
+
 export default function DropUpMenu(){
+    const navigate = useNavigate();
+
+    const SignOutHandler = (event) => {
+        event.preventDefault();
+        localStorage.clear();
+        navigate("/login");
+    };
+
     return (
         <div className="row g-3 m-2" style={{height: "65%"}}>
             <div className="col-12 mt-auto">
@@ -8,11 +20,11 @@ export default function DropUpMenu(){
                             Options
                         </button>
                         <ul class="dropdown-menu w-100">
-                            <li><a className="dropdown-item" href="#">New transaction</a></li>
-                            <li><a className="dropdown-item" href="#">Settings</a></li>
-                            <li><a className="dropdown-item" href="#">Profile</a></li>
+                            <DropDownItem textValue={"New transaction"} />
+                            <DropDownItem textValue={"Settings"} />
+                            <DropDownItem textValue={"Profile"} />
                             <li><hr/></li>
-                            <li><a className="dropdown-item" href="#">Sign out</a></li>
+                            <DropDownItem textValue={"Sign out"} clickHandler={SignOutHandler}/>
                         </ul>
                     </div>
                 </div>

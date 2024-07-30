@@ -23,7 +23,7 @@ export default function DropUpMenu(){
                     <ul className="dropdown-menu">
                         <DropDownItem textValue={"New transaction"} />
                         <DropDownItem textValue={"Settings"} />
-                        <DropDownItem textValue={"Profile"} />
+                        <DropDownItem textValue={"Profile"}/>
                         <li><hr/></li>
                         <DropDownItem textValue={"Sign out"} clickHandler={SignOutHandler}/>
                     </ul>

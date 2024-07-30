@@ -9,6 +9,8 @@ import HomePage from "./components/Pages/HomePage";
 
 import FormContainer from "./components/Pages/FormContainer";
 
+import PageNotFound from "./components/Pages/PageNotFound";
+
 function App() {
   return (
     <>
@@ -21,6 +23,7 @@ function App() {
               }/>
               <Route path="/login" element={<FormContainer initial={true} />}/>
               <Route path="/registration" element={<FormContainer initial={false} />}/>
+              <Route path="*" element={<PageNotFound />} />
           </Routes>
       </BrowserRouter>
     </>

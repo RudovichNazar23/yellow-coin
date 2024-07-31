@@ -1,14 +1,21 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { HomePageContext } from "../../context/HomePageContext";
+import { HOME_PAGE_ACTIONS } from "../../utils/homePageActions";
 
 import DropDownItem from "./DropDownItem";
 
 export default function DropUpMenu(){
     const navigate = useNavigate();
+    const { dispatch, user } = useContext(HomePageContext);
 
     const SignOutHandler = (event) => {
-        event.preventDefault();
         localStorage.clear();
         navigate("/login");
+    };
+
+    const userProfileHandler = (event) => {
+        dispatch({ type: HOME_PAGE_ACTIONS.userProfile });
     };
 
     return (
@@ -17,13 +24,13 @@ export default function DropUpMenu(){
                 <div className="btn-group dropup col-4 ">
                     <a className="dropdown-toggle text-decoration-none align-self-end text-dark" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <span className="d-none d-sm-inline text-dark m-2">
-                            UserXd
+                            {user && user.username}
                         </span>
                     </a>
                     <ul className="dropdown-menu">
                         <DropDownItem textValue={"New transaction"} />
                         <DropDownItem textValue={"Settings"} />
-                        <DropDownItem textValue={"Profile"}/>
+                        <DropDownItem textValue={"Profile"} clickHandler={userProfileHandler} />
                         <li><hr/></li>
                         <DropDownItem textValue={"Sign out"} clickHandler={SignOutHandler}/>
                     </ul>

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { HomePageContext } from "../../context/HomePageContext";
 
-export default function OptionListItem({ textValue, iconName, type }){
+export default function OptionListItem({ textValue, iconName, action }){
     const { dispatch } = useContext(HomePageContext);
     const onClickHandler = (event) => {
         event.preventDefault();
-        dispatch({ "type": type })
+        dispatch({ type: action })
     };
 
     return(

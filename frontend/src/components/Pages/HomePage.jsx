@@ -41,9 +41,8 @@ export default function HomePage(){
     
     return (
         <HomePageContext.Provider value={{"dispatch": dispatch, "user": currentUserInfo}}>
-            <div className="container-fluid">
                 <div className="row">
-                    <div className="col-3 min-vh-100 border-end">
+                    <div className="col-3 vh-100 border">
                             <HomeLogo/>
                             <OptionsList/>
                             <DropUpMenu/>
@@ -54,7 +53,6 @@ export default function HomePage(){
                         }
                     </div>
                 </div>
-            </div>
         </HomePageContext.Provider>
     );
 };

@@ -19,10 +19,10 @@ export default function DropUpMenu(){
     };
 
     return (
-        <div className="row g-3 m-1 mt-5" style={{height: "50%"}}>
-            <div className="col-lg-12 col-sm-4 justify-content-center align-items-center mt-auto">
-                <div className="btn-group dropup col-4 ">
-                    <a className="dropdown-toggle text-decoration-none align-self-end text-dark" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="row g-3 m-1 mt-5">
+            <div className="col-lg-12 col-sm-4 justify-content-center align-items-center">
+                <div className="btn-group dropend col-8">
+                    <a className="dropdown-toggle text-decoration-none text-dark" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <span className="d-none d-sm-inline text-dark m-2">
                             {user && user.username}
                         </span>

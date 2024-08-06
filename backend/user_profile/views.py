@@ -5,8 +5,9 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, ProfilePictureSerializer
 from .permissions import IsOwner
+from .models import ProfilePicture
 
 
 class UserViewSet(ModelViewSet):
@@ -30,4 +31,24 @@ class UserViewSet(ModelViewSet):
         current_user = self.request.user
         user = self.serializer_class(current_user)
         return Response(user.data)
-        
+
+
+class ProfilePictureViewSet(ModelViewSet):
+    serializer_class = ProfilePictureSerializer
+    queryset = ProfilePicture.objects.all()
+
+    def get_permissions(self):
+        permission_classes = [permissions.IsAuthenticated]
+
+        if self.action in ("list, destroy"):
+            permission_classes = [permissions.IsAuthenticated, IsOwner]
+        return [permission() for permission in permission_classes]
+    
+    def retrieve(self, request, *args, **kwargs):
+       return Response({"detail": "This action is not allowed"})
+    
+    def update(self, request, *args, **kwargs):
+        return Response({"detail": "This action is not allowed"})
+    
+    def partial_update(self, request, *args, **kwargs):
+        return Response({"detail": "This action is not allowed"})

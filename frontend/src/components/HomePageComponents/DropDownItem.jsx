@@ -1,7 +1,7 @@
 export default function DropDownItem({ textValue, clickHandler }){
     const onClickHandler = (event) => {
         event.preventDefault()
-        clickHandler(event);
+        clickHandler && clickHandler(event);
     };
 
     return (

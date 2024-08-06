@@ -40,7 +40,7 @@ export default function HomePage(){
     );
     
     return (
-        <HomePageContext.Provider value={{"dispatch": dispatch, "user": currentUserInfo}}>
+        <HomePageContext.Provider value={{"dispatch": dispatch, "user": currentUserInfo, "setUserInfo": setCurrentUserInfo}}>
                 <div className="row">
                     <div className="col-3 vh-100 border">
                             <HomeLogo/>

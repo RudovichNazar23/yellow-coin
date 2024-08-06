@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 
 from rest_framework import serializers
 
+from .models import ProfilePicture
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +28,9 @@ class UserSerializer(serializers.ModelSerializer):
         except ValidationError as password_error:
             raise serializers.ValidationError({"password": password_error.messages})
         return user
+
+
+class ProfilePictureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfilePicture
+        fields = ["user", "picture"]

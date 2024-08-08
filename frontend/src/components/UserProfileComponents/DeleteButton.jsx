@@ -1,9 +1,11 @@
-export default function DeleteButton(){
+import Button from "react-bootstrap/Button";
+
+export default function DeleteButton({ onClick }){
     return (
         <div className="col-4 text-center">
-            <button type="button" className="btn btn-danger col-7 btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                Delete account
-            </button>
+            <Button variant="danger" size="sm" className="col-7" onClick={onClick}>
+                Delete
+            </Button>
         </div>
     );
 };

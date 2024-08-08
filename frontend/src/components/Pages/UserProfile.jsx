@@ -8,11 +8,10 @@ import InfoGroupContainer from "../UserProfileComponents/InfoGroupContainer";
 import DeleteButton from "../UserProfileComponents/DeleteButton";
 import EditButton from "../UserProfileComponents/EditButton";
 import DeleteProfileModal from "../UserProfileComponents/DeleteProfileModal";
-import ModalContainer from "../UserProfileComponents/ModalContainer";
-import UploadPhotoForm from "../UserProfileComponents/UploadPhotoForm";
 
 export default function UserProfile(){
     const [isEdit, setIsEdit] = useState(false);
+    const [show, setShow] = useState(false);
 
     const { user } = useContext(HomePageContext);
 
@@ -36,8 +35,8 @@ export default function UserProfile(){
                         !isEdit && (
                             <>
                                 <EditButton clickHandler={onSetIsEdit}/>
-                                <DeleteButton/>
-                                <DeleteProfileModal />
+                                <DeleteButton onClick={() => setShow(true)} />
+                                <DeleteProfileModal show={show} setShow={setShow} />
                             </>
                         )
                     }

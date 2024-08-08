@@ -7,10 +7,18 @@ from rest_framework import serializers
 from .models import ProfilePicture
 
 
+class ProfilePictureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfilePicture
+        fields = ["id", "user", "picture"]
+
+
 class UserSerializer(serializers.ModelSerializer):
+    pictures = ProfilePictureSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ["id", "username", "password", "first_name", "last_name", "email"]
+        fields = ["id", "username", "password", "first_name", "last_name", "email", "pictures"]
 
         extra_kwargs = {
             "password": {
@@ -29,8 +37,3 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"password": password_error.messages})
         return user
 
-
-class ProfilePictureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProfilePicture
-        fields = ["user", "picture"]

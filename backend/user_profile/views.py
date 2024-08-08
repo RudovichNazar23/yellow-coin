@@ -29,7 +29,7 @@ class UserViewSet(ModelViewSet):
     @action(methods=["get"], detail=False, permission_classes=[permissions.IsAuthenticated,], )
     def get_current_user(self, request):
         current_user = self.request.user
-        user = self.serializer_class(current_user)
+        user = self.serializer_class(current_user, context={"request": request})
         return Response(user.data)
 
 
@@ -40,15 +40,13 @@ class ProfilePictureViewSet(ModelViewSet):
     def get_permissions(self):
         permission_classes = [permissions.IsAuthenticated]
 
-        if self.action in ("list, destroy"):
+        if self.action in ("list, destroy", "retrieve"):
             permission_classes = [permissions.IsAuthenticated, IsOwner]
         return [permission() for permission in permission_classes]
-    
-    def retrieve(self, request, *args, **kwargs):
-       return Response({"detail": "This action is not allowed"})
     
     def update(self, request, *args, **kwargs):
         return Response({"detail": "This action is not allowed"})
     
     def partial_update(self, request, *args, **kwargs):
         return Response({"detail": "This action is not allowed"})
+    

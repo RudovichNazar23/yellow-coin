@@ -2,9 +2,10 @@ import api from "../../utils/api";
 import { useContext } from "react";
 import { HomePageContext } from "../../context/HomePageContext";
 
-import ModalContainer from "./ModalContainer";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
-export default function DeleteProfileModal(){
+export default function DeleteProfileModal({ show, setShow }){
     const { user } = useContext(HomePageContext);
 
     const onDeleteHandler = (event) => {
@@ -21,12 +22,25 @@ export default function DeleteProfileModal(){
     };
 
     return (
-        <div className="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <ModalContainer 
-                modalTitle={"Delete profile"}
-                modalBody={"Are sure that you want to delete your profile?"}
-                modalButton={<button className="btn btn-danger" onClick={onDeleteHandler}>Delete</button>}
-            />
-        </div>
+        <Modal
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            size="lg"
+            show={show}
+            onHide={() => setShow(false)}
+        >  
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Delete profile
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Are you sure that you want to delete your profile ?</p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" size="sm" onClick={() => setShow(false)}>Close</Button>
+                <Button variant="danger" size="sm" onClick={onDeleteHandler}>Delete</Button>
+            </Modal.Footer>
+        </Modal>
     );
 }

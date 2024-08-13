@@ -7,9 +7,8 @@ import homePageReducer from "../../reducers/homePageReducer";
 
 import HomeLogo from "../HomePageComponents/HomeLogo";
 import OptionsList from "../HomePageComponents/OptionsList";
-import DropUpMenu from "../HomePageComponents/DropUpMenu";
-
 import DashBoard from "./Dashboard";
+import ExpandNavbar from "../HomePageComponents/ExpandNavbar";
 
 export default function HomePage(){
     const INITIAL_STATE = {
@@ -42,12 +41,12 @@ export default function HomePage(){
     return (
         <HomePageContext.Provider value={{"dispatch": dispatch, "user": currentUserInfo, "setUserInfo": setCurrentUserInfo}}>
                 <div className="row">
-                    <div className="col-3 vh-100 border">
-                            <HomeLogo/>
-                            <OptionsList/>
-                            <DropUpMenu/>
+                    <ExpandNavbar />
+                    <div className="col-xl-3 col-md-3 vh-100 d-xl-inline d-md-inline d-none border">
+                        <HomeLogo/>
+                        <OptionsList/>
                     </div>
-                    <div className="col-9 d-flex flex-column">
+                    <div className="col-xl-9 col-md-9 col-12 d-flex flex-column">
                         {
                             state.component
                         }

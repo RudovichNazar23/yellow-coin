@@ -2,16 +2,23 @@ import { useContext, useState } from "react";
 import { HomePageContext } from "../../context/HomePageContext";
 import api from "../../utils/api";
 import InfoGroup from "./InfoGorup";
-import EditFormButton from "./EditFormButton";
+import InfoGroupButton from "./InfoGroupButton";
 
 export default function InfoGroupContainer({ user, isEdit, setIsEdit }){
-    const { setUserInfo } = useContext(HomePageContext);
-    const [fieldErrors, setFieldErrors] = useState({
+    const initialErrors = {
         "username": [],
         "email": [],
         "first_name": [],
         "last_name": []
-    });
+    };
+
+    const { setUserInfo } = useContext(HomePageContext);
+    const [fieldErrors, setFieldErrors] = useState(initialErrors);
+
+    const onCancel = () => {
+        setIsEdit(false);
+        setFieldErrors(initialErrors)
+    };
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -47,16 +54,16 @@ export default function InfoGroupContainer({ user, isEdit, setIsEdit }){
     };
 
     return (
-        <form className="row align-items-center justify-content-center" onSubmit={onSubmit}>
+        <form className="row justify-content-center" onSubmit={onSubmit}>
             <InfoGroup labelValue={"Username"} fieldValue={user.username} inputId={"username"} errors={fieldErrors.username}/>
             <InfoGroup labelValue={"Email"} fieldValue={user.email} inputId={"email"} errors={fieldErrors.email}/>
             <InfoGroup labelValue={"First name"} fieldValue={user.first_name} inputId={"first_name"} errors={fieldErrors.first_name}/>
             <InfoGroup labelValue={"Last name"} fieldValue={user.last_name} inputId={"last_name"} errors={fieldErrors.last_name}/>
             {
                 isEdit && (
-                    <div className="row mt-3 p-3 align-items-center justify-content-center">
-                        <EditFormButton textValue={"Update"} buttonColor={"btn-success"}/>
-                        <EditFormButton textValue={"Cancel"} buttonColor={"btn-secondary"} clickHandler={() => setIsEdit(false)}/>
+                    <div className="row mt-2 justify-content-center">
+                        <InfoGroupButton type="submit" variant="success" size="sm" className="m-1 col-xl-6 col-12" value="Update"/>
+                        <InfoGroupButton variant="secondary" size="sm" className="m-1 col-xl-6 col-12" value="Cancel" onClick={onCancel}/>
                     </div>
                 )
             }

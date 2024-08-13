@@ -6,18 +6,18 @@ export default function InfoGroup({ labelValue, fieldValue, inputId, errors }){
 
     return (
         <>
-            <div className={`col-8 d-flex flex-row ${!isEdit && `border rounded-5`} mt-1`}>
-                <div className="col-3 border-end border-dark p-1">
+            <div className="col-xl-7 col-md-7 col-12 d-flex flex-row mt-1">
+                <div className="col-4 align-self-center">
                     { labelValue }
                 </div>
                 {
                     !isEdit ? (
-                        <div className="col-5 p-1 mx-1">
-                            { fieldValue ? fieldValue : <span className="text-secondary">No information provided</span> }
+                        <div className="mx-2 align-self-center">
+                            { fieldValue ? fieldValue : <span className="text-secondary">...</span> }
                         </div>
                     ) :
                     (
-                        <input type="text" className="form-control mx-2" defaultValue={fieldValue} id={inputId}/>
+                        <input type="text" className="form-control mx-1" defaultValue={fieldValue} id={inputId}/>
                     )
                 }
             </div>

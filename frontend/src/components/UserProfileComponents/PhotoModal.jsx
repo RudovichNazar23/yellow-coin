@@ -15,7 +15,7 @@ export default function PhotoModal(props){
                     Your photos
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="">
                 <PhotoCarousel/>
             </Modal.Body >
             <Modal.Footer>

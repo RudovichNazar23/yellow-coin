@@ -30,7 +30,7 @@ export default function UploadModal(props){
         response
         .then((res) => {
             if(res.status === 201){
-                setUserPictures((prev) => prev.concat([res.data,]));
+                setUserPictures((prev) => [res.data,].concat(prev));
                 props.setShow(false);
             }
         })

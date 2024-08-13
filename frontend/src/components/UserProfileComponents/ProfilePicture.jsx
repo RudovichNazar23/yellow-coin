@@ -15,7 +15,7 @@ export default function ProfilePicture(){
     const [show, setShow] = useState(false);
     
     return (
-        <div className="col-3 d-flex flex-column align-items-center">
+        <div className="col-xl-3 col-md-12 d-flex flex-column align-items-center order-xl-1 order-2">
             <ProfilePictureContext.Provider value={
                     {
                         "userPictures": userPictures, 
@@ -26,10 +26,10 @@ export default function ProfilePicture(){
                     userPictures.length > 0 ? (
                         <PictureContainer /> 
                     ): (
-                        <img src="/unknown_user.png" className="img-fluid rounded-2" width={"200"} height={"200"} alt="..." />
+                        <img src="/unknown_user.png" className="img-fluid rounded-2 mt-2" alt="..." />
                     )
                 }
-                <div className="col-8 text-center d-grid mt-1">
+                <div className="col-xl-10 col-md-8 col-12 text-center d-grid mt-1 p-1">
                     <Button variant="primary" onClick={() => setShow(true)}>Upload</Button>
                 </div>
                 <UploadModal show={show} setShow={setShow} onHide={() => setShow(false)} />

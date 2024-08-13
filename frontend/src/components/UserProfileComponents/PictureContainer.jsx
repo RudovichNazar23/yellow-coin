@@ -9,7 +9,7 @@ import PhotoModal from "./PhotoModal";
 
 export default function PictureContainer(){
     const { userPictures, setUserPictures } = useContext(ProfilePictureContext);
-    const [currentPictureIndex, setCurrentPictureIndex] = useState(userPictures.length - 1);
+    const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
     const [show, setShow] = useState(false);
 
     const onNextHandler = () => {
@@ -30,17 +30,19 @@ export default function PictureContainer(){
         response
         .then((res) => { 
                 if(res.status === 204){
-                    setCurrentPictureIndex((prev) => prev - 1 || 0);
                     setUserPictures(
                             (prev) => { 
                                 return prev.filter((picture) => picture.id !== prev[currentPictureIndex].id); 
                             }
-                    )
+                    );
                 }
             }
         )
         .catch((error) => console.log(error));
     };
+
+    console.log(userPictures);
+    console.log(currentPictureIndex);
 
     return (
         <>
@@ -52,7 +54,7 @@ export default function PictureContainer(){
                         "currentPicture": userPictures[currentPictureIndex].picture
                     }
                 }>
-                <MainProfilePhoto photoPath={userPictures[userPictures.length - 1].picture} setShow={setShow} />
+                <MainProfilePhoto photoPath={userPictures[0].picture} setShow={setShow} />
                 <PhotoModal 
                     show={show}
                     onHide={() => setShow(false)}

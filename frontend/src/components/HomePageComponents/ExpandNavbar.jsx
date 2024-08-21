@@ -24,6 +24,9 @@ export default function ExpandNavbar(){
                     <Nav className="me-auto">
                         <OptionsList />
                     </Nav>
+                    <Nav className="ms-2 mt-1">
+                        <DropMenu />
+                    </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

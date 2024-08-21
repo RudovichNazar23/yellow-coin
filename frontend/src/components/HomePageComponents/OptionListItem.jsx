@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { HomePageContext } from "../../context/HomePageContext";
 
-export default function OptionListItem({ textValue, iconName, action, children }){
+export default function OptionListItem({ textValue, iconName, action }){
     const { dispatch } = useContext(HomePageContext);
     const onClickHandler = (event) => {
         event.preventDefault();

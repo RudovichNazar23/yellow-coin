@@ -19,10 +19,14 @@ export default function DropMenu(){
     };
 
     return (
-        <div className="col-lg-12">
-            <div className="nav-item dropdown-xl-center dropdown col-8">
-                <a className="dropdown-toggle text-decoration-none text-dark" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    {user && user.username}
+        <div className="col-lg-7 m-1">
+            <div className="nav-item dropdown-xl-center dropdown">
+                <a className="col-lg-7 text-decoration-none text-dark d-flex flex-row" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/user.svg" alt="..."/>
+                    <span className="ms-1">
+                        {user && user.username}
+                    </span>
+                    <span className="dropdown-toggle ms-1"/>
                 </a>
                 <ul className="dropdown-menu">
                     <DropDownItem textValue={"New transaction"} />

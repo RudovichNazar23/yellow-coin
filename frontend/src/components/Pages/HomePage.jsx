@@ -9,6 +9,7 @@ import HomeLogo from "../HomePageComponents/HomeLogo";
 import OptionsList from "../HomePageComponents/OptionsList";
 import DashBoard from "./Dashboard";
 import ExpandNavbar from "../HomePageComponents/ExpandNavbar";
+import DropMenu from "../HomePageComponents/DropMenu";
 
 export default function HomePage(){
     const INITIAL_STATE = {
@@ -45,6 +46,13 @@ export default function HomePage(){
                     <div className="col-xl-3 col-md-3 vh-100 d-xl-inline d-md-inline d-none border">
                         <HomeLogo/>
                         <OptionsList/>
+                        <div className="row" style={{height: "620px"}}>
+                            <div className="container-fluid p-3 mt-auto">
+                                <div className="m-1 d-flex flex-row">
+                                    <DropMenu />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-xl-9 col-md-9 col-12 d-flex flex-column">
                         {

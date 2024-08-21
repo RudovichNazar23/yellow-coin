@@ -24,7 +24,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'user_profile'
+    'user_profile',
+    'coin_base'
 ]
 
 MIDDLEWARE = [

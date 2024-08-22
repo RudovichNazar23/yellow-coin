@@ -12,6 +12,7 @@ urlpatterns = [
     path("auth/token/refresh/", TokenRefreshView.as_view(), name="refresh_token"),
     path("", include("rest_framework.urls")),
     path("user_profile/", include("user_profile.urls")),
+    path("coin_base/", include("coin_base.urls"))
 ]
 
 if settings.DEBUG:

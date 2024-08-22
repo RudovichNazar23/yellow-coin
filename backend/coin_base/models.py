@@ -13,6 +13,7 @@ class Coin(models.Model):
     mint = models.CharField(max_length=100)
     year_of_issue = models.CharField(max_length=100)
     denomination = models.CharField(max_length=50)
+    coin_image = models.ImageField(upload_to="coin_images")
 
     def __str__(self):
         return f"{self.title}"
